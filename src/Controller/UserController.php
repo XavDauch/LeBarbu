@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
@@ -36,7 +38,7 @@ class UserController extends AbstractController
             $user = $form->getData();
             $entityManagerInterface->persist(($user));
             $entityManagerInterface->flush();
-            $this->addFlash("success", "Vous avez bien créé votre compte client");
+            //$this->addFlash("success", "Vous avez bien créé votre compte client");
             return $this->redirectToRoute("app_users");
 
         }
@@ -44,4 +46,27 @@ class UserController extends AbstractController
             "form" => $form,
         ]);
     }
+    #[Route('/users/{slug}/edit', name: 'app_users_edit')]
+    //#[IsGranted('ROLE_ADMIN')]
+    public function edit(
+        Request $request, 
+        EntityManagerInterface $em, 
+        User $user
+    ): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+
+            return $this->redirectToRoute('app_users');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+}
+
 }

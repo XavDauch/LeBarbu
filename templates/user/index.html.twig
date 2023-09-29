@@ -4,20 +4,17 @@
 
 {% block body %}
     <div>
-        <a href="{{ path('app_hellos')}}">Home</a>
+        
         <h1>Clients</h1>
-        <a href="{{ path('app_users_new') }}">Ajouter Client</a>
+        <a href="{{ path('app_users_new') }}">Ajouter Client</a><br>
+        <a href="{{ path('app_hellos')}}">Accueil</a>
 </div>
 
 {% for user in users %}
-    <h2>{{ user.unsername }}</h2>
+    <h2>{{ user.username }}</h2>
     <p>{{user.bottle|length }}</p>
 
-    <a href="">Edit</a>
+    <a href="{{ path('app_users_edit', {slug: user.slug}) }}">Edit</a>
     <a href="">Delete</a>
 {% endfor %}
-
-
-
-  
 {% endblock %}
