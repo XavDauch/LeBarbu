@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}LaBarBu{% endblock %}
+{% block title %}Hello{% endblock %}
 
 {% block body %}
 <h1>Bienvenue au Bar Bu</h1>
-<h2>Projet de Bar <br> By Xavier Dauchart </h2>
+<h2>Projet de Bar <br> By Xavier Dauchart </h2><br>
+<a href="{{ path('app_users') }}">Entrer dans le Bar</a><br>
+<a href="https://github.com/XavDauch/">Mon github</a>
 
-<div>
-    <a href="path {{path('app_hello') }}">Entrer dans le Bar</a>
-</div>
 {% endblock %}

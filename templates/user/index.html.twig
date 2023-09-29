@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Users{% endblock %}
 
 {% block body %}
-<h1>Bienvenue au Bar Bu</h1>
-<h2>Projet de Bar <br> By Xavier Dauchart </h2>
-
-<div>
-    <a href="path {{path('app_user') }}">Entrer dans le Bar</a>
+    <div>
+        <a href="{{ path('app_hellos')}}">Home</a>
+        <h1>Clients</h1>
+        <a href="{{ path('app_users_new') }}">Ajouter Client</a>
 </div>
 
-    <a href="https://github.com/XavDauch/">Mon github</a>
+{% for user in users %}
+    <h2>{{ user.unsername }}</h2>
+    <p>{{user.bottle|length }}</p>
+
+    <a href="">Edit</a>
+    <a href="">Delete</a>
+{% endfor %}
+
+
+
+  
 {% endblock %}
