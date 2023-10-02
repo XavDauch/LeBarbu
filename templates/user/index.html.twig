@@ -11,14 +11,16 @@
 </div>
 
 {% for user in users %}
-    <h2>{{ user.username }}</h2>
-    <p>{{user.bottle|length }}</p>
+    <div>
+        <h2>{{ user.username }}</h2>
+        <p>{{user.bottle|length }}</p>
 
-<a href="{{ path('app_users_edit', { slug: user.slug }) }}">Edit</a>
-            <a href="{{ path('app_users_delete', { slug: user.slug }) }}" onclick="return confirm('Are you sure to delete -{{ user.username }}- ?')" >Delete</a>
+        <a href="{{ path('app_users_edit', { slug: user.slug }) }}">Edit</a>
+        <a href="{{ path('app_users_delete', { slug: user.slug }) }}" onclick="return confirm('Etes vous sure de vouloir effacer -{{ user.username }}- ?')" >Delete</a>
+    </div>
 {% else %}
     <tr>
-        <td>Aucun client</td>
+        <td>Aucun client en base de données</td>
     </tr>
 {% endfor %}
 

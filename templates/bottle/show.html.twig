@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bottles{% endblock %}
+
+{% block body %}
+    <div>
+        <a href="{{ path('app_users') }}">Clients</a>
+        <h1>Bottles</h1>
+        <a href="{{ path('app_bottles_new', {userSlug: userSlug}) }}">Add bottles</a>
+    </div>
+    <div>
+        <p{% if bottles.isSorted('bottles.id') %} class="sorted" {% endif %}>
+            Sort by {{ knp_pagination_sortable(bottles, 'Id', 'bottles.id') }}
+        </p>
+        <p{% if bottles.isSorted('bottles.title') %} class="sorted" {% endif %}>
+            Sort by {{ knp_pagination_sortable(bottles, 'Title', 'bottles.title') }}
+        </p>
+    </div>
+    {% for bottle in bottles %}
+        <div data-controller="bottle">
+            <h2 data-action="click->bottle#toggle">{{ bottle.title }}</h2>    
+            <p data-bottle-target="description" style="overflow: hidden;">{{ bottle.description|nl2br }}</p>
+        </div>
+        <a href="{{ path('app_bottles_edit', {userSlug: userSlug, slug: bottle.slug}) }}">Edit</a>
+        <a href="{{ path('app_bottles_delete', {userSlug: userSlug, slug: bottle.slug}) }}" onclick="return confirm('Etes-vous sure de vouloir efface -{{ bouteille.name }}- ?')" >Delete</a>
+    {% else %}
+        <p>Il n'y a aucune bouteille... En créer une !</p>
+    {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(bottles) }}
+        </div>
+{% endblock %}

@@ -68,7 +68,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-    #[Route('/users/{slug}/delete', name: 'app_users_delete')]
+        #[Route('/users/{slug}/delete', name: 'app_users_delete')]
     public function delete(
         EntityManagerInterface $entityManagerInterface,
         User $user
