@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Bottle{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_bottles_show', {userSlug : userSlug}) }}">Retour</a>
+{{ form(form) }}    
+
+{% endblock %}

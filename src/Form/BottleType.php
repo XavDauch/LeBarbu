@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Bottle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +16,8 @@ class BottleType extends AbstractType
             ->add('name')
             ->add('Brand')
             ->add('Description')
-            ->add('slug')
             ->add('user')
+            ->add('submit', SubmitType::class)
         ;
     }
 

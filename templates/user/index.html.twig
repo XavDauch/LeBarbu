@@ -4,24 +4,22 @@
 
 {% block body %}
     <div>
-        
         <h1>Clients</h1>
         <a href="{{ path('app_users_new') }}">Ajouter Client</a><br>
         <a href="{{ path('app_hellos')}}">Accueil</a>
-</div>
-
-{% for user in users %}
-    <div>
-        <h2>{{ user.username }}</h2>
-        <p>{{user.bottle|length }}</p>
-
-        <a href="{{ path('app_users_edit', { slug: user.slug }) }}">Edit</a>
-        <a href="{{ path('app_users_delete', { slug: user.slug }) }}" onclick="return confirm('Etes vous sure de vouloir effacer -{{ user.username }}- ?')" >Delete</a>
     </div>
+{% for user in users %}
+<div>
+    <h2>{{ user.username }}</h2>
+    <p>{{user.bottle|length }}</p>
+
+    <a href="{{ path('app_users_edit', { slug: user.slug }) }}">Edit</a>
+    <a href="{{ path('app_users_delete', { slug: user.slug }) }}" onclick="return confirm('Etes vous sure de vouloir effacer -{{ user.username }}- ?')" >Delete</a>
+</div>
 {% else %}
-    <tr>
-        <td>Aucun client en base de données</td>
-    </tr>
+<tr>
+    <td>Aucun client en base de données</td>
+</tr>
 {% endfor %}
 
 {% endblock %}

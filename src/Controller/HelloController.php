@@ -12,7 +12,7 @@ class HelloController extends AbstractController
     public function index(): Response
     {
         return $this->render('hello/index.html.twig', [
-           
+            
         ]);
     }
 }
